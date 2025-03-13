@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1) კომენტარებთ ახსენით რა განსხვავება let, const და var keyword-ებს შორის. ახსენით რატომ არის ცუდი პრაქტიკა var keyword-ის გამოყენება.
+        /*let , const და var keyword-ები ყველა განსხვავდება , მაგალითად let და const keyword-ები იმით განსხვავდება რომ რომ  let-ის მნიშვნელობის შეცვლა შეგვიძლია,
+        ხოლო const-ზე მნიშვნელობას რომ დავწერთ მისი შეცვლა არ შეგვიძლია , var კიდე იმით განსხვავდება რომ ისელი არის ძველი JS-იდან და მისი გამოყნებით
+        შეიძლება ბევრი bug იყოს კოდში. */
+
+
+        //2)
+        var greet = 'hello world'
+        console.log(window.greet);
+        window.greet('andria')
+        console.log(window.greet)
+        </script>

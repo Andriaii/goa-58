@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let currentWeather = prompt("შეიყვანეთ ამინდის მდგომარეობა (მაგ: მზიანი, ღრუბლიანი, წვიმიანი, თოვლიანი):");
+
+
+        switch (currentWeather) {
+            case "მზიანი":
+                console.log("დღეს ამინდი მზიანია, შეიძლება გასეირნება.");
+
+            break;
+
+            case "ღრუბლიანი":
+                console.log("დღეს ღრუბლიანი ამინდია, შეიძლება ნისლი იყოს.");
+
+            break;
+
+            case "წვიმიანი":
+                console.log("დღეს წვიმს, აუცილებლად წაიღეთ ქოლგა.");
+
+        break;
+
+            case "თოვლიანი":
+                console.log("დღეს თოვს, ფრთხილად იყავით გზაზე.");
+
+        break;
+
+    default:
+        console.log("ამინდის მდგომარეობა არ არის ცნობილი.");
+        break;
+}
+    </script>
+</body>
+</html>

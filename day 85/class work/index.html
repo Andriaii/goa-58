@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ბიუჯეტის შემოწმება</title>
+</head>
+<body>
+
+    <h2>შეიყვანეთ თქვენი ბიუჯეტი</h2>
+    <input type="number" id="budgetInput" placeholder="შეიყვანეთ თანხა">
+    <button onclick="checkBudget()">შემოწმება</button>
+    <p id="result"></p>
+
+    <script>
+        function checkBudget() {
+            let budget = parseFloat(document.getElementById("budgetInput").value);
+            let resultText = "";
+
+            if (budget >= 500 && budget <= 1000) {
+                resultText = "გაქვთ საკმარისი თანხა.";
+                console.log("გაქვთ საკმარისი თანხა.");
+            } else {
+                resultText = "თქვენი თანხა არასაკმარისია.";
+                console.log("თქვენი თანხა არასაკმარისია.");
+            }
+
+            document.getElementById("result").innerText = resultText;
+        }
+    </script>
+
+</body>
+</html>
