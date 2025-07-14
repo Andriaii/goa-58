@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Table with Delete</title>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="addBtn">Add Product</button>
+    <button id="deleteBtn">Delete Product by ID</button>
+    <p>Total Price: 0</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const addBtn = document.getElementById("addBtn");
+        const deleteBtn = document.getElementById("deleteBtn");
+        const tbody = document.querySelector("tbody");
+        const p = document.querySelector("p");
+
+        const products = [];
+        let idCounter = 1; // უნიკალური ID-ს სათვლელი
+
+        // ფუნქცია <tr> ელემენტის შესაქმნელად
+        const createTr = (product) => {
+            const newTr = document.createElement("tr");
+            newTr.setAttribute("data-id", product.id); // ცხრილშიც ვინახავთ ID-ს data-id ატრიბუტად
+
+            const idTd = document.createElement("td");
+            idTd.textContent = product.id;
+
+            const nameTd = document.createElement("td");
+            nameTd.textContent = product.name;
+
+            const quantityTd = document.createElement("td");
+            quantityTd.textContent = product.quantity;
+
+            const priceTd = document.createElement("td");
+            priceTd.textContent = product.price;
+
+            newTr.appendChild(idTd);
+            newTr.appendChild(nameTd);
+            newTr.appendChild(quantityTd);
+            newTr.appendChild(priceTd);
+
+            return newTr;
+        };
+
+        // ფუნქცია ჯამური ფასის განსახლებლად
+        const updateTotalPrice = () => {
+            const totalPrice = products.reduce(
+                (prev, cur) => prev + cur.price * cur.quantity,
+                0
+            );
+            p.textContent = `Total Price: ${totalPrice}`;
+        };
+
+        // პროდუქტის დამატება
+        addBtn.addEventListener("click", () => {
+            const name = prompt("Enter product name");
+            const quantity = parseInt(prompt("Enter quantity"));
+            const price = parseFloat(prompt("Enter price"));
+
+            if (!name || isNaN(quantity) || isNaN(price)) {
+                alert("Please fill all fields correctly");
+                return;
+            }
+
+            const product = {
+                id: idCounter++, // უნიკალური ID
+                name,
+                quantity,
+                price
+            };
+
+            products.push(product);
+            tbody.appendChild(createTr(product));
+            updateTotalPrice();
+        });
+
+        // პროდუქტის წაშლა ID-ს მიხედვით
+        deleteBtn.addEventListener("click", () => {
+            const idToDelete = parseInt(prompt("Enter product ID to delete"));
+
+            if (isNaN(idToDelete)) {
+                alert("Please enter a valid ID");
+                return;
+            }
+
+            const index = products.findIndex(p => p.id === idToDelete);
+
+            if (index === -1) {
+                alert("Product with this ID not found");
+                return;
+            }
+
+            // წაშლა მასივიდან
+            products.splice(index, 1);
+
+            // წაშლა ცხრილიდან
+            const trToDelete = tbody.querySelector(`tr[data-id="${idToDelete}"]`);
+            if (trToDelete) {
+                trToDelete.remove();
+            }
+
+            updateTotalPrice();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #cart {
+      background-color: gray;
+      color: white;
+      padding: 20px;
+    }
+
+    #cart h2 {
+      margin-top: 0;
+    }
+
+    #main {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .product, .cart-product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      width: 250px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .product img, .cart-product img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #2c7be5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #1a5edb;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cart">
+    <h2>🛒 Cart</h2>
+    <div id="cartItems"></div>
+  </div>
+
+  <main id="main"></main>
+
+  <script>
+    const products = [];
+
+    const main = document.getElementById("main");
+    const cartItems = document.getElementById("cartItems");
+
+    fetch("https://fakestoreapi.com/products/")
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("product");
+
+          productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>${product.description.substring(0, 100)}...</p>
+            <p><strong>$${product.price}</strong></p>
+            <button>Add to Cart</button>
+          `;
+
+          const button = productCard.querySelector("button");
+          button.addEventListener("click", () => {
+            products.push(product);
+            updateCart();
+          });
+
+          main.appendChild(productCard);
+        });
+      });
+
+    function updateCart() {
+      cartItems.innerHTML = ""; // clear cart
+
+      products.forEach((product) => {
+        const cartCard = document.createElement("div");
+        cartCard.classList.add("cart-product");
+
+        cartCard.innerHTML = `
+          <img src="${product.image}" alt="${product.title}">
+          <h4>${product.title}</h4>
+          <p>${product.description.substring(0, 80)}...</p>
+          <p><strong>$${product.price}</strong></p>
+        `;
+
+        cartItems.appendChild(cartCard);
+      });
+    }
+  </script>
+
+</body>
+</html>

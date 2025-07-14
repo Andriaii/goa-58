@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>დავალება 1</title>
+</head>
+<body>
+
+<button onclick="addParagraph()">დაამატე ელემენტი</button>
+<div id="container"></div>
+
+<script>
+  function addParagraph() {
+    const p = document.createElement("p");
+    p.textContent = "ახალი ელემენტი დამატებულია";
+    document.getElementById("container").appendChild(p);
+  }
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>დავალება 2</title>
+</head>
+<body>
+
+<button onclick="showQuote()">მიჩვენე ციტატა</button>
+<p id="quote"></p>
+
+<script>
+  const quotes = [
+    "იყავი შენ თავთან გულწრფელი.",
+    "გუშინ წარსულია, ხვალ მოლოდინია, დღეს კი საჩუქარია.",
+    "შეცდომები წარმატების ნაწილია.",
+    "ნამდვილი ძალა სიმშვიდეშია.",
+    "ყველაფერი თავიდან იწყება."
+  ];
+
+  function showQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").textContent = quotes[randomIndex];
+  }
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>დავალება 3</title>
+</head>
+<body>
+
+<img id="gallery" src="https://picsum.photos/id/1015/400/250" width="400" height="250" />
+<br />
+<button onclick="prev()">წინა</button>
+<button onclick="next()">შემდეგი</button>
+
+<script>
+  const images = [
+    "https://picsum.photos/id/1015/400/250",
+    "https://picsum.photos/id/1016/400/250",
+    "https://picsum.photos/id/1018/400/250"
+  ];
+  let index = 0;
+
+  function showImage() {
+    document.getElementById("gallery").src = images[index];
+  }
+
+  function next() {
+    index = (index + 1) % images.length;
+    showImage();
+  }
+
+  function prev() {
+    index = (index - 1 + images.length) % images.length;
+    showImage();
+  }
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>დავალება 4</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: teal;
+      position: relative;
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+<div id="box"></div>
+<br />
+<button onclick="randomize()">შეცვალე სტილი</button>
+
+<script>
+  function getRandomColor() {
+    return `rgb(${Math.floor(Math.random() * 256)}, 
+                ${Math.floor(Math.random() * 256)}, 
+                ${Math.floor(Math.random() * 256)})`;
+  }
+
+  function randomize() {
+    const box = document.getElementById("box");
+    box.style.backgroundColor = getRandomColor();
+    box.style.width = `${50 + Math.random() * 150}px`;
+    box.style.height = `${50 + Math.random() * 150}px`;
+    box.style.left = `${Math.random() * 100}px`;
+    box.style.top = `${Math.random() * 100}px`;
+  }
+</script>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>დავალება 5</title>
+  <style>
+    #counter {
+      font-size: 60px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .even {
+      color: green;
+    }
+    .odd {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="counter" class="even">0</div>
+
+<script>
+  let number = 0;
+
+  setInterval(() => {
+    const counter = document.getElementById("counter");
+    counter.textContent = number;
+    counter.className = number % 2 === 0 ? "even" : "odd";
+    number = (number + 1) % 10;
+  }, 3000);
+</script>
+
+</body>
+</html>

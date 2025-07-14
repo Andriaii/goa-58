@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 30px;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+  <input type="text" id="name" placeholder="Enter Name" />
+  <input type="email" id="email" placeholder="Enter Email" />
+  <input type="password" id="password" placeholder="Enter Password" />
+  <button onclick="register()">Register</button>
+
+  <script>
+    
+    const users = [];
+
+    
+    class User {
+      constructor(name, email, password) {
+        this._name = name;
+        this._email = email;
+        this._password = null; 
+        this.password = password;
+      }
+
+      
+      get name() {
+        return this._name;
+      }
+
+      set password(newPass) {
+        const hasNumber = /\d/.test(newPass);                
+        const hasPunctuation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(newPass);
+        const isLongEnough = newPass.length > 4;
+
+        if (isLongEnough && (hasNumber || hasPunctuation)) {
+          this._password = newPass;
+        } else {
+          console.warn("❌ Password is not strong enough. Must be >4 chars and contain a number or punctuation.");
+        }
+      }
+    }
+
+    
+    function register() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+    
+      if (!name || !email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      
+      const newUser = new User(name, email, password);
+
+      
+      if (!newUser._password) {
+        alert("Password is invalid. Must be >4 chars and include number or punctuation.");
+        return;
+      }
+
+      
+      users.push(newUser);
+
+      
+      console.log("Registered Users:", users);
+
+      
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
+
+      alert(` Welcome ${newUser.name}!`);
+    }
+  </script>
+</body>
+</html>
