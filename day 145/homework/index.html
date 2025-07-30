@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stats Preview Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-veryDarkBlue min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-6xl mx-auto bg-darkDesaturatedBlue rounded-lg overflow-hidden flex flex-col md:flex-row-reverse text-white">
+      
+      <!-- IMAGE -->
+      <div class="md:w-1/2">
+        <img
+          src="image-header-desktop.jpg"
+          alt="People working"
+          class="w-full h-full object-cover mix-blend-multiply brightness-75 hidden md:block"
+        />
+        <img
+          src="image-header-mobile.jpg"
+          alt="People working"
+          class="w-full h-full object-cover mix-blend-multiply brightness-75 md:hidden"
+        />
+      </div>
+
+      <!-- CONTENT -->
+      <div class="md:w-1/2 p-8 flex flex-col justify-center gap-6">
+        <h1 class="text-3xl md:text-4xl font-bold text-center md:text-left">
+          Get <span class="text-softViolet">insights</span> that help your business grow.
+        </h1>
+        <p class="text-slightlyTransparentWhite text-sm text-center md:text-left">
+          Discover the benefits of data analytics and make better decisions regarding revenue, customer experience, and overall efficiency.
+        </p>
+
+        <!-- STATS -->
+        <div class="flex flex-col md:flex-row justify-between text-center md:text-left gap-4 mt-4">
+          <div>
+            <h2 class="text-xl font-bold">10k+</h2>
+            <p class="uppercase text-xs text-slightlyTransparentWhite tracking-widest">Companies</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">314</h2>
+            <p class="uppercase text-xs text-slightlyTransparentWhite tracking-widest">Templates</p>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">12M+</h2>
+            <p class="uppercase text-xs text-slightlyTransparentWhite tracking-widest">Queries</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Tailwind Custom Colors */
+      body {
+        --veryDarkBlue: hsl(233, 47%, 7%);
+        --darkDesaturatedBlue: hsl(244, 38%, 16%);
+        --softViolet: hsl(277, 64%, 61%);
+        --slightlyTransparentWhite: hsla(0, 0%, 100%, 0.75);
+      }
+
+      .bg-veryDarkBlue {
+        background-color: var(--veryDarkBlue);
+      }
+
+      .bg-darkDesaturatedBlue {
+        background-color: var(--darkDesaturatedBlue);
+      }
+
+      .text-softViolet {
+        color: var(--softViolet);
+      }
+
+      .text-slightlyTransparentWhite {
+        color: var(--slightlyTransparentWhite);
+      }
+    </style>
+  </body>
+</html>
