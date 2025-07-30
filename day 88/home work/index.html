@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //2) შექმენით ფუნქცია, რომელსაც გადაეცემა 5 რიცხვი, თქვენი დავალებაა გამოითვალოთ მათი საშუალო არითმეტიკული და დააბრუნოთ
+        function average(a,b,c,d,e){
+            return (a + b + c + d + e ) / 5
+        }
+
+        //3) შექმენით იგივე ფუნქცია arrow function-ის გამოყენებით
+        const average1 = (a,b,c,d,e) =>{ (a + b + c + d + e) / 5 }
+
+        //4) შექმენით ფუნქცია, რომელიც მომხარებელს შემოატანინებს სახელს, გვარს, ასაკს და დაბეჭდავს წინდადებას ამ მონაცემების გამოყენებით
+        function personalInfo(){
+            const name = prompt('enter ur name')
+            const age = prompt('enter ur age')
+            const surname = prompt('enter ur surname')
+            console.log(`hello ${name} ${surname} who is ${age}`)
+        }
+        
+        //5) შექმენით arrow ფუნქცია, რომელიც მიიღებს 2 პარამეტრს, price, quantity.
+        //  ამ ფუნქციამ უნდა გამოითვალოს ჯამში რა თანხის გადახდა მოუწევს კლიენტს და დააბრუნოს. 
+        // ფუნქციას გამოძახებისას შეიძლება გადაეცეს მხოლოდ 1 არგუმენტი, ამ შემთხვევაში quantity = 1
+
+        const money_talks = (price , quantity = 1) => price * quantity
+
+
+        //6) შექმენით ფუნქცია, მასში კი ცვლადი let ან const keyword-ის გამოყენებით. შეეცადეთ დაბეჭდოთ ეს ცვლადი ფუნქციის გარეთ. ახსენით რა მოხდა და რატომ
+
+        function keywords () {
+            let name = 'andria'
+        }
+        console.log(name)
+
+        //7) გააკეთეთი მე-6 დავალება, ოღონდ ამჯერად ცვლადი შექმენით var keyword-ით
+        function keywords () {
+            var name = 'andria'
+        }
+        console.log(name)
+    </script>
+</body>
+</html>
