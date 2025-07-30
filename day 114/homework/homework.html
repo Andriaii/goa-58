@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Guess the Number (1-20)</h1>
+  <input type="number" id="guessInput" placeholder="Enter number 1-20" min="1" max="20">
+  <button onclick="checkGuess()">Submit</button>
+  <p id="message"></p>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 20) + 1;
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    function checkGuess() {
+      const input = document.getElementById("guessInput");
+      const message = document.getElementById("message");
+      const userGuess = Number(input.value);
+      
+      // Input validation
+      if (userGuess < 1 || userGuess > 20) {
+        alert("Number must be between 1 and 20");
+        input.value = "";
+        return;
+      }
+
+      attempts++;
+
+      if (userGuess > randomNumber) {
+        alert("Number is Too high. Try again.");
+      } else if (userGuess < randomNumber) {
+        alert("Number is Too low. Try again.");
+      } else {
+        alert(`Correct! You guessed the number in ${attempts} attempt(s)!`);
+        message.textContent = "🎉 Congratulations!";
+        input.disabled = true;
+        return;
+      }
+
+      if (attempts >= maxAttempts) {
+        alert("You have reached the maximum attempts.");
+        message.textContent = `💥 Game Over. The number was ${randomNumber}.`;
+        input.disabled = true;
+      }
+
+      input.value = "";
+      input.focus();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>პროდუქტის ჩამატება სიაში</title>
+</head>
+<body>
+
+  <h2>პროდუქტების სია</h2>
+  <ul id="productList">
+    <li>პური</li>
+    <li>რძე</li>
+  </ul>
+
+  <button id="addBtn">პროდუქტის დამატება</button>
+
+  <script>
+    // 1. მივწვდეთ UL ელემენტს ID-ით
+    const list = document.getElementById("productList");
+
+    // 2. მოვძებნოთ ღილაკი
+    const button = document.getElementById("addBtn");
+
+    // 3. ღილაკზე დაწკაპებისას prompt და ახალი li
+    button.addEventListener("click", () => {
+      const product = prompt("შეიყვანეთ ახალი პროდუქტი:");
+
+      // ვამოწმებთ რომ მომხმარებელმა რამე შეიყვანა
+      if (product && product.trim() !== "") {
+        const li = document.createElement("li"); // ვქმნით ახალ <li>
+        li.textContent = product.trim();          // ჩავწერთ ტექსტს
+        list.appendChild(li);                     // ვამატებთ UL სიაში
+      } else {
+        alert("გთხოვთ შეიყვანოთ პროდუქტის სახელი.");
+      }
+    });
+  </script>
+
+</body>
+</html>

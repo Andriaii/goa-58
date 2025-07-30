@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>მოსწავლის რეგისტრაცია</h2>
+
+<form id="studentForm">
+  <input type="text" id="name" placeholder="სახელი" required />
+  <input type="email" id="email" placeholder="Email" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button type="submit">დარეგისტრირება</button>
+</form>
+
+<h3>დარეგისტრირებული მოსწავლეები</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>სახელი</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="studentTableBody"></tbody>
+</table>
+
+<script>
+  const form = document.getElementById("studentForm");
+  const tableBody = document.getElementById("studentTableBody");
+  const students = [];
+
+  // უნიკალური შემთხვევითი ID გენერატორი
+  function generateId() {
+    return Math.floor(100000 + Math.random() * 900000); // eg. 627318
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // ვალიდაცია — სავსე ველები და იმეილის გამეორება
+    if (!name || !email || !password) {
+      alert("გთხოვთ შეავსოთ ყველა ველი");
+      return;
+    }
+
+    const exists = students.find(s => s.email === email);
+    if (exists) {
+      alert("მოსწავლე ამ ელფოსტით უკვე რეგისტრირებულია");
+      return;
+    }
+
+    const student = {
+      id: generateId(),
+      name,
+      email,
+      password
+    };
+
+    students.push(student);
+
+    // ცხრილში დამატება
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${student.id}</td>
+      <td>${student.name}</td>
+      <td>${student.email}</td>
+    `;
+    tableBody.appendChild(row);
+
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
