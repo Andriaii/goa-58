@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Paragraph Manipulation</title>
+</head>
+<body>
+
+  <p id="p1">ეს პირველი პარაგრაფია</p>
+  <p>ეს მეორე პარაგრაფია</p>
+  <p>ეს მესამე პარაგრაფია</p>
+
+  <script>
+    // პირველი პარაგრაფის არჩევა და id + ტექსტის შეცვლა
+    const firstP = document.querySelector("p");
+    firstP.id = "firstParagraph";
+    firstP.textContent = "ტექსტი შეცვლილია პირველი პარაგრაფისთვის";
+
+    // მეორე პარაგრაფის არჩევა (შემდეგი p ელემენტი) და უკანაფრის და კლასის შეცვლა
+    const secondP = document.querySelectorAll("p")[1];
+    secondP.style.backgroundColor = "yellow";
+    secondP.className = "highlighted";
+
+    // მესამე პარაგრაფში <b> ელემენტის დამატება და ტექსტის ჩაწერა
+    const thirdP = document.querySelectorAll("p")[2];
+    const bold = document.createElement("b");
+    bold.textContent = "დამატებული ტექსტი B თეგში";
+    thirdP.appendChild(bold);
+  </script>
+</body>
+</html>

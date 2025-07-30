@@ -1,0 +1,95 @@
+კარგი, ეს არის კოდი სრულად, კომენტარების გარეშე:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice</title>
+    <style>
+        button:hover {
+            background-color: green;
+        }
+        .task-item {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>სასურსათე სია:</h2>
+    <ul id="ul-1"></ul>
+
+    <hr>
+
+    <button id="sum-btn">გამოთვალე ჯამი</button>
+    <p id="sum-output"></p>
+
+    <hr>
+
+    <button id="fav-movies-btn">ჩემი საყვარელი ფილმები</button>
+    <ol id="movie-list"></ol>
+
+    <hr>
+
+    <h3>To Do List</h3>
+    <button id="add-task-btn">Add Task</button>
+    <ul id="task-list"></ul>
+
+    <script>
+        const myUl = document.getElementById("ul-1");
+        const texts = ["პური", "შაქარი", "რძე", "10ც კვერცხი", "ხორცი"];
+        texts.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            myUl.appendChild(li);
+        });
+
+        const sumBtn = document.getElementById("sum-btn");
+        sumBtn.addEventListener("click", () => {
+            const num1 = Number(prompt("შეიყვანე პირველი რიცხვი:"));
+            const num2 = Number(prompt("შეიყვანე მეორე რიცხვი:"));
+            if (isNaN(num1) || isNaN(num2)) return;
+            const sum = num1 + num2;
+            document.getElementById("sum-output").textContent = `${num1} + ${num2} = ${sum}`;
+        });
+
+        const moviesBtn = document.getElementById("fav-movies-btn");
+        moviesBtn.addEventListener("click", () => {
+            const movies = [];
+            for (let i = 0; i < 5; i++) {
+                const movie = prompt(`შეიყვანე შენი საყვარელი ფილმი (${i + 1}/5):`);
+                if (movie) movies.push(movie);
+            }
+            movies.sort();
+            const movieList = document.getElementById("movie-list");
+            movieList.innerHTML = "";
+            movies.forEach(movie => {
+                const li = document.createElement("li");
+                li.textContent = movie;
+                movieList.appendChild(li);
+            });
+        });
+
+        const taskBtn = document.getElementById("add-task-btn");
+        const taskList = document.getElementById("task-list");
+
+        taskBtn.addEventListener("click", () => {
+            const taskText = prompt("შეიყვანე ახალი Task:");
+            if (taskText) {
+                const li = document.createElement("li");
+                li.classList.add("task-item");
+                li.textContent = taskText + " ";
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "Delete";
+                delBtn.addEventListener("click", () => {
+                    taskList.removeChild(li);
+                });
+                li.appendChild(delBtn);
+                taskList.appendChild(li);
+            }
+        });
+    </script>
+</body>
+</html>
+```

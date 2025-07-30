@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>პროდუქტების სია</title>
+</head>
+<body>
+
+  <!-- დაულაგებელი სია -->
+  <h2>ჩემი პროდუქტები</h2>
+  <ul id="productList">
+    <!-- აქ ჩაემატება ახალი პროდუქტები -->
+  </ul>
+
+  <!-- ღილაკი -->
+  <button id="addProductBtn">პროდუქტის დამატება</button>
+
+  <script>
+    // მივწვდეთ UL ელემენტს
+    const list = document.getElementById("productList");
+
+    // მივწვდეთ ღილაკს
+    const button = document.getElementById("addProductBtn");
+
+    // ღილაკზე დაჭერისას
+    button.addEventListener("click", function () {
+      // prompt ითხოვს პროდუქტის სახელს
+      const productName = prompt("შეიყვანე პროდუქტის სახელი:");
+
+      // თუ მომხმარებელმა რაიმე შეიყვანა
+      if (productName && productName.trim() !== "") {
+        // ვქმნით ახალ li თეგს
+        const newItem = document.createElement("li");
+
+        // ვამატებთ ტექსტს li-ში
+        newItem.textContent = productName.trim();
+
+        // ვამატებთ li-ს UL სიაში
+        list.appendChild(newItem);
+      } else {
+        alert("გთხოვ შეიყვანე სწორი პროდუქტის სახელი.");
+      }
+    });
+  </script>
+
+</body>
+</html>

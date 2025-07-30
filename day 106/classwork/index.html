@@ -1,0 +1,90 @@
+<button id="countBtn">Click me</button>
+
+<script>
+  let count = 0;
+
+  function counter() {
+    count++;
+    console.log("Current count:", count);
+  }
+
+  document.getElementById("countBtn").addEventListener("click", counter);
+</script>
+
+
+
+
+
+
+
+<button id="addProductBtn">Add Product</button>
+
+<table border="1" id="productTable">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price (per item)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ახალი პროდუქტები აქ ჩაემატება -->
+  </tbody>
+</table>
+
+<p id="totalPrice">Total Price: 0</p>
+
+<script>
+  const addBtn = document.getElementById("addProductBtn");
+  const tbody = document.querySelector("#productTable tbody");
+  const totalPriceEl = document.getElementById("totalPrice");
+
+  let totalPrice = 0;
+
+  addBtn.addEventListener("click", () => {
+    const name = prompt("Enter product name:");
+    if (!name || name.trim() === "") {
+      alert("Product name cannot be empty.");
+      return;
+    }
+
+    const quantityStr = prompt("Enter quantity:");
+    const quantity = Number(quantityStr);
+    if (isNaN(quantity) || quantity <= 0) {
+      alert("Quantity must be a positive number.");
+      return;
+    }
+
+    const priceStr = prompt("Enter price per item:");
+    const price = Number(priceStr);
+    if (isNaN(price) || price <= 0) {
+      alert("Price must be a positive number.");
+      return;
+    }
+
+    // create new table row
+    const tr = document.createElement("tr");
+
+    // product name cell
+    const tdName = document.createElement("td");
+    tdName.textContent = name.trim();
+    tr.appendChild(tdName);
+
+    // quantity cell
+    const tdQuantity = document.createElement("td");
+    tdQuantity.textContent = quantity;
+    tr.appendChild(tdQuantity);
+
+    // price cell
+    const tdPrice = document.createElement("td");
+    tdPrice.textContent = price.toFixed(2);
+    tr.appendChild(tdPrice);
+
+    // append row to tbody
+    tbody.appendChild(tr);
+
+    // update total price
+    totalPrice += quantity * price;
+    totalPriceEl.textContent = `Total Price: ${totalPrice.toFixed(2)}`;
+  });
+</script>
